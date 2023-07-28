@@ -1,7 +1,8 @@
 const StatisticsLine = ({ name, score }) => {
 	return (
 		<tr>
-			<td>{name}:</td> <td>{score}</td>
+			<td>{name}:</td>
+			<td>{score}</td>
 		</tr>
 	);
 };
