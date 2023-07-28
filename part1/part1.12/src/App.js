@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const App = () => {
 	const anecdotes = [
@@ -14,6 +14,7 @@ const App = () => {
 
 	const [selected, setSelected] = useState(0);
 	const [votes, setVotes] = useState(anecdotes.map((_) => 0));
+	const [most, setMost] = useState(0);
 
 	const newAnecdote = () => {
 		return Math.floor(Math.random() * anecdotes.length);
@@ -27,15 +28,32 @@ const App = () => {
 		setVotes(newVotes);
 	};
 
+	useEffect(() => {
+		let most = 0;
+		let index = 0;
+		votes.forEach((vote, i) => {
+			if (vote > most) {
+				most = vote;
+				index = i;
+			}
+		});
+		setMost(index);
+	}, [votes]);
+
 	return (
 		<div>
 			<div>
+				<h1>Anecdote of the day</h1>
 				{anecdotes[selected]} {votes[selected]} votes
 			</div>
 			<button onClick={voteSelected}>Give a vote.</button>
 			<button onClick={() => setSelected(newAnecdote)}>
 				Give me an anecdote!
 			</button>
+			<div>
+				<h1>Anecdote with most votes</h1>
+				{anecdotes[most]} {votes[most]} votes
+			</div>
 		</div>
 	);
 };
