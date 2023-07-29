@@ -51,11 +51,11 @@ const App = () => {
 	return (
 		<div>
 			{courses.map((course, key) => (
-				<>
+				<div key={key}>
 					<Header course={course.name} />
 					<Content data={course.parts} />
 					<Total data={course.parts} />
-				</>
+				</div>
 			))}
 		</div>
 	);
