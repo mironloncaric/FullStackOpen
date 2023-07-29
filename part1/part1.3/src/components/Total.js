@@ -1,9 +1,9 @@
 function Total({ data }) {
 	return (
-		<p>
+		<strong>
 			Number of exercises{" "}
-			{data[0].exercises + data[1].exercises + data[2].exercises}
-		</p>
+			{data.reduce((previous, current) => previous + current.exercises, 0)}
+		</strong>
 	);
 }
 
